@@ -1,11 +1,12 @@
-import React from 'react'
-import FormSignup from "./FormSignup"
+import React, { useState } from 'react'
+import { useUnprotectedPage } from '../../hooks/useProtection'
+import FormSignup from '../../components/formSignup/FormSignup'
 
 const SignupPage = () =>{
+    useUnprotectedPage();
 
     return (
         <div>
-            <img/>
             <FormSignup/>
         </div>
     )

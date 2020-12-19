@@ -1,13 +1,15 @@
 import React from 'react'
+import { useProtectedPage } from '../../hooks/useProtection'
+import ImageCard from '../../components/imageCard/ImageCard'
 
 const FeedPage = () =>{
+    useProtectedPage();
 
     return (
         <div>
-            <Header/>
             <ImageCard/>
         </div>
-    )
+    );
 }
 
 export default FeedPage

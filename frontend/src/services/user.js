@@ -5,9 +5,9 @@ export const signup = (body, history) => {
 
     axios.post(`http://localhost:3003/user/signup`, body)
     .then((response) => {
-        localStorage.setItem("token", response)
+        localStorage.setItem("token", response.data.token)
         console.log(response)
-        // goToFeed(history)
+        goToFeed(history)
     })
     .catch( (error) => {
         alert("Ocorreu um erro, tente novamente mais tarde!")
@@ -17,9 +17,9 @@ export const signup = (body, history) => {
 
 export const login = (body, history) => {
 
-    axios.post(`http://localhost:3003/users/login`, body)
+    axios.post(`http://localhost:3003/user/login`, body)
     .then((response) => {
-        localStorage.setItem("token", response)
+        localStorage.setItem("token", response.data.token)
         goToFeed(history)
     })
     .catch( (error) => {

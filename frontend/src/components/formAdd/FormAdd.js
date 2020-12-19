@@ -1,23 +1,27 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
+import useForm from '../../hooks/useForm'
+import { insertImage}  from '../../services/images'
 
 const FormAdd = () =>{
     const history = useHistory()
+    const token = localStorage.getItem("token")
     const {form, handleInputChange, resetState} = useForm({
         subtitle: "", 
+        tag: "",
         file: "",
-        tags: "",
         collection: ""
-    })
+    });
 
-    const onClickLogin = (event) => {
+    const onClickInsert = (event) => {
         event.preventDefault()
-        login(form, history)
+        insertImage(form, token)
         resetState()
-    }
+    };
 
     return (
         <div>
-            <form onSubmit={onClickLogin}>
+            <form onSubmit={onClickInsert}>
                 <input
                     type="text"
                     value={form.subtitle}
@@ -28,8 +32,8 @@ const FormAdd = () =>{
                 />
                 <input
                     type="text"
-                    value={form.tags}
-                    name="tags"
+                    value={form.tag}
+                    name="tag"
                     onChange={handleInputChange}
                     required
                     placeholder="Tags"

@@ -19,13 +19,7 @@ const FormSignup = () =>{
 
     const onClickSignup = (event) => {
         event.preventDefault();
-        const body = {
-            "name": form.name,
-            "email": form.email,
-            "nick_name": form.nick_name,
-            "password": form.password
-        }
-        signup(body, history);
+        signup(form, history);
         resetState();
     };
 

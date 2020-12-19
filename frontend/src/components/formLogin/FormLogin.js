@@ -1,9 +1,8 @@
-import React from 'react'
-import useForm from '../../hooks/useForm'
+import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import useForm from '../../hooks/useForm'
 import { goToSignUp } from '../../router/Coordinator'
 import { login } from '../../services/user'
-
 
 const FormLogin = () =>{
     const history = useHistory()
@@ -11,17 +10,17 @@ const FormLogin = () =>{
 
     const [toggleVisibility, setToggleVisibility] = useState({
         showPassword: false
-      })
+    });
 
     const onClickLogin = (event) => {
         event.preventDefault()
         login(form, history)
         resetState()
-    }
+    };
 
     const handleClick = () => {
-          setToggleVisibility({ showPassword: !toggleVisibility.showPassword})
-      }
+        setToggleVisibility({ showPassword: !toggleVisibility.showPassword})
+    };
 
     return (
         <div>
@@ -41,13 +40,13 @@ const FormLogin = () =>{
                     name="password"
                     onChange={handleInputChange}
                     required
-                    placeholder="Email ou Nickname"
+                    placeholder="Senha"
                     title="Mínimo 6 caracteres"
                     type={toggleVisibility.showPassword ? 'text' : 'password'}
                 />
-                <div>
+                {/* <div>
                     <Eye onClick={handleClick} visible={toggleVisibility.showPassword}/>
-                </div>
+                </div> */}
                 <button>Entrar</button>
             </form>
             <p onClick={()=>goToSignUp(history)}>Não possui cadastro? Clique aqui.</p>

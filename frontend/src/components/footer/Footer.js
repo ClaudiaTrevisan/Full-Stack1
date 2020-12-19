@@ -1,13 +1,12 @@
 import React from 'react'
 
-const Header = () =>{
+const Footer = () =>{
 
     return (
         <div>
-            <img/>
-            
+
         </div>
     )
 }
 
-export default Header
+export default Footer

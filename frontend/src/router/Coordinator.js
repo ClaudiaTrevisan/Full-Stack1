@@ -10,10 +10,6 @@ export const goToFeed = (history) => {
   history.push('/feed')
 };
 
-export const goToDetail = (history) => {
-  history.push('/detail')
-};
-
 export const goToAdd = (history) => {
   history.push('/add')
 };

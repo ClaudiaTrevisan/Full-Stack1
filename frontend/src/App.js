@@ -1,10 +1,14 @@
+import { BrowserRouter } from 'react-router-dom';
 import './App.css';
-import SignupPage from "./screens/signupPage/SignupPage"
+import Router from './router/Router';
 
 function App() {
+
   return (
     <div>
-      <SignupPage/>
+      <BrowserRouter>
+        <Router/>
+      </BrowserRouter>
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import FormAdd from './FormAdd'
+import FormAdd from '../../components/formAdd/FormAdd'
 
 const AddPage = () =>{
 

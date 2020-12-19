@@ -11,7 +11,6 @@ export class ImageController {
     try {
       const input: InputImage = {
         subtitle: req.body.subtitle,
-        date: req.body.date,
         file: req.body.file,
         tag: req.body.tag,
         collection: req.body.collection

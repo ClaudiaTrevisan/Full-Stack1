@@ -55,7 +55,6 @@ export class ImageBusiness {
         tokenData.id, 
         input.file, 
         input.collection, 
-        input.date
       )
 
       await this.imageDataBase.createImage(
