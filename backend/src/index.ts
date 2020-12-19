@@ -2,9 +2,19 @@ import { AddressInfo } from "net";
 import express from "express";
 import { userRouter } from "./routes/userRouter";
 import { imageRouter } from "./routes/imageRouter";
+import cors from 'cors';
+
 const app = express();
 
+// const corsOptions = {
+//   origin: '*',
+//   optionsSuccessStatus: 200 
+// }
+
 app.use(express.json());
+app.use(cors());
+
+// cors(corsOptions)
 
 app.use("/user", userRouter);
 app.use("/image", imageRouter);

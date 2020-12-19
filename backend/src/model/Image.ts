@@ -1,5 +1,3 @@
-
-
 export interface Tag {
     id: string,
     author_id: string,
@@ -8,7 +6,6 @@ export interface Tag {
 
 export interface InputImage {
     subtitle: string,
-    date?: Date | undefined,
     file: string,
     tag: string,
     collection: string
@@ -55,7 +52,6 @@ export class Image {
         private author: string,
         private file: string,
         private collection: string,
-        private date?: Date | undefined
     ) {}
 
     public static toImageModel(image: any): Image {
@@ -65,14 +61,12 @@ export class Image {
             image.author,
             image.file,
             image.collection,
-            image.date
         );
     }
 
     public getId = (): string => this.id
     public getSubtitle = (): string => this.subtitle
     public getAuthor = (): string => this.author
-    public getDate = (): Date | undefined => this.date
     public getFile = (): string => this.file
     public getCollection = (): string => this.collection
 }
