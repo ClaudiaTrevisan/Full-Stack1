@@ -24,8 +24,8 @@ const ImageCard = () =>{
             {images && images.map((image) =>{
                 return (
                     <div>
-                        {image.tag}
-                        {image.subtitle}
+                        <img src={image.tag}/>
+                        <div>{image.subtitle}</div>
                     </div>
                 );
             })}
