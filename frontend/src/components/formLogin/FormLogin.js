@@ -3,19 +3,25 @@ import { useHistory } from 'react-router-dom'
 import useForm from '../../hooks/useForm'
 import { goToSignUp } from '../../router/Coordinator'
 import { login } from '../../services/user'
+import eyeoff from '../../assets/visibility.svg'
+import eyeon from '../../assets/eye-close-up.svg'
+import { ContainerForm, Typography, Form, Input, DivImgEye, ImgEye, ButtonLogin } from "./Styles"
 
-const FormLogin = () =>{
-    const history = useHistory()
+const FormLogin = (props) =>{
+    const history = useHistory();
     const {form, handleInputChange, resetState} = useForm({info: "", password: ""})
 
     const [toggleVisibility, setToggleVisibility] = useState({
         showPassword: false
     });
 
+    const eye = toggleVisibility.showPassword ? eyeon : eyeoff;
+
     const onClickLogin = (event) => {
-        event.preventDefault()
-        login(form, history)
-        resetState()
+        event.preventDefault();
+        login(form, history);
+        props.functionChange();
+        resetState();
     };
 
     const handleClick = () => {
@@ -23,9 +29,9 @@ const FormLogin = () =>{
     };
 
     return (
-        <div>
-            <form onSubmit={onClickLogin}>
-                <input
+        <ContainerForm>
+            <Form onSubmit={onClickLogin}>
+                <Input
                     type="text"
                     value={form.info}
                     name="info"
@@ -34,7 +40,7 @@ const FormLogin = () =>{
                     placeholder="Email ou Nickname"
                     title="email@email.com"
                 />
-                <input
+                <Input
                     type="text"
                     value={form.password}
                     name="password"
@@ -42,15 +48,15 @@ const FormLogin = () =>{
                     required
                     placeholder="Senha"
                     title="Mínimo 6 caracteres"
-                    type={toggleVisibility.showPassword ? 'text' : 'password'}
+                    type={toggleVisibility.showPassword ? "text" : "password"}
                 />
-                {/* <div>
-                    <Eye onClick={handleClick} visible={toggleVisibility.showPassword}/>
-                </div> */}
-                <button>Entrar</button>
-            </form>
-            <p onClick={()=>goToSignUp(history)}>Não possui cadastro? Clique aqui.</p>
-        </div>
+                <DivImgEye>
+                    <ImgEye src={eye} onClick={handleClick} visible={toggleVisibility.showPassword}/>
+                </DivImgEye>
+                <ButtonLogin state={props.state}>Entrar</ButtonLogin>
+            </Form>
+            <Typography state={props.state} onClick={()=>goToSignUp(history)}>Não possui cadastro? Clique aqui.</Typography>
+        </ContainerForm>
     );
 }
 

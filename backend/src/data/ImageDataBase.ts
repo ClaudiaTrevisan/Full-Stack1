@@ -37,25 +37,24 @@ export class ImageDataBase extends BaseDatabase {
     try {
       const allImages: OutputImage[] = []
       
-      // if(!info){
-        const result = await this.getConnection().raw(`
-        SELECT 
-        img.id, 
-        img.subtitle,
-        img.author, 
-        img.date,
-        img.file,
-        img.collection,
-        tag.tag FROM ${Migrations.getTableImage()} img
-        RIGHT JOIN ${Migrations.getTableUser()} u
-        ON img.author =  u.id
-        LEFT JOIN ${Migrations.getTableTag()} tag
-        ON tag.author_id = u.id
-        JOIN imagetic_relational ir
-        ON ir.id_image = img.id
-        AND ir.id_tag = tag.id
-        WHERE u.id = "${id}"
-        ORDER BY date DESC;
+      const result = await this.getConnection().raw(`
+      SELECT 
+      img.id, 
+      img.subtitle,
+      img.author, 
+      img.date,
+      img.file,
+      img.collection,
+      tag.tag FROM ${Migrations.getTableImage()} img
+      RIGHT JOIN ${Migrations.getTableUser()} u
+      ON img.author =  u.id
+      LEFT JOIN ${Migrations.getTableTag()} tag
+      ON tag.author_id = u.id
+      JOIN imagetic_relational ir
+      ON ir.id_image = img.id
+      AND ir.id_tag = tag.id
+      WHERE u.id = "${id}"
+      ORDER BY date DESC;
       `)
       
       for(let item of result[0]){

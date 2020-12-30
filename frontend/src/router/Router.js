@@ -4,34 +4,42 @@ import SignupPage from '../screens/signupPage/SignupPage'
 import LoginPage from '../screens/loginPage/LoginPage'
 import FeedPage from '../screens/feedPage/FeedPage'
 import AddPage from '../screens/addPage/Addpage'
-import Header from '../components/header/Header'
-import Footer from '../components/footer/Footer'
+import DefaultPage from '../screens/defaultPage/DefaultPage'
 
 
 const Router = () =>{
-    const [state, setState] = useState(true)
+    const [state, steState] = useState(false);
+    const [feedState, setFeedState] = useState(true);
+
+    const onClickMode = () =>{
+        steState(!state)
+    };
+
+    const changeStateFeed = () =>{
+        setFeedState(!feedState)
+    };
 
     return (
         <Switch>
-            {/* <Header stateImage={state}/> */}
+            <DefaultPage function={onClickMode} state={state} stateFeed={feedState}>
             <Route exact path = '/'>
-                <SignupPage/>
+                <SignupPage state={state} functionChange={changeStateFeed}/>
             </Route>
             <Route exact path = '/login'>
-                <LoginPage/>
+                <LoginPage state={state} functionChange={changeStateFeed}/>
             </Route>
             <Route exact path = '/feed'>
-                <FeedPage/>
+                <FeedPage state={state}/>
             </Route>
             <Route exact path = '/add'>
                 <AddPage/>
             </Route>
+            </DefaultPage>
             <Route>
                 <div>erro 404</div> 
             </Route>
-            <Footer/>
         </Switch>
-    )
+    );
 }
 
 export default Router

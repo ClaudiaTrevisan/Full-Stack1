@@ -3,8 +3,11 @@ import { useHistory } from 'react-router-dom'
 import useForm from '../../hooks/useForm'
 import { goToLogin } from '../../router/Coordinator'
 import { signup } from '../../services/user'
+import eyeoff from '../../assets/visibility.svg'
+import eyeon from '../../assets/eye-close-up.svg'
+import { ContainerForm, Input, DivImgEye, ImgEye, ButtonSignup, Form, Typography } from './Styles'
 
-const FormSignup = () =>{
+const FormSignup = (props) =>{
     const history = useHistory()
     const {form, handleInputChange, resetState} = useForm({
         name: "", 
@@ -17,20 +20,23 @@ const FormSignup = () =>{
         showPassword: false
     });
 
+    const eye = toggleVisibility.showPassword ? eyeon : eyeoff
+
     const onClickSignup = (event) => {
         event.preventDefault();
         signup(form, history);
-        resetState();
+        props.functionChange();
+        resetState()
     };
 
     const handleClick = () => {
-          setToggleVisibility({ showPassword: !toggleVisibility.showPassword})
+        setToggleVisibility({ showPassword: !toggleVisibility.showPassword})
     };
 
     return (
-        <div>
-            <form onSubmit={onClickSignup}>
-                <input
+        <ContainerForm>
+            <Form onSubmit={onClickSignup}>
+                <Input
                     type="text"
                     value={form.name}
                     name="name"
@@ -38,7 +44,7 @@ const FormSignup = () =>{
                     required
                     placeholder="Nome"
                 />
-                <input
+                <Input
                     type="text"
                     value={form.email}
                     name="email"
@@ -47,7 +53,7 @@ const FormSignup = () =>{
                     placeholder="Email"
                     title="email@email.com"
                 />      
-                <input
+                <Input
                     type="text"
                     value={form.nick_name}
                     name="nick_name"
@@ -55,7 +61,7 @@ const FormSignup = () =>{
                     required
                     placeholder="Nickname"
                 />                
-                <input
+                <Input
                     type="text"
                     value={form.password}
                     name="password"
@@ -65,14 +71,14 @@ const FormSignup = () =>{
                     title="Mínimo 6 caracteres"
                     type={toggleVisibility.showPassword ? 'text' : 'password'}
                 />
-                {/* <div>
-                    <Eye onClick={handleClick} visible={toggleVisibility.showPassword}/>
-                </div> */}
-                <button>Cadastrar</button>
-            </form> 
-            <p onClick={()=>goToLogin(history)}>Já possui cadastro? Clique aqui.</p>
-        </div>
-    )
+                <DivImgEye>
+                    <ImgEye src={eye} onClick={handleClick} visible={toggleVisibility.showPassword}/>
+                </DivImgEye>
+                <ButtonSignup state={props.state}>Cadastrar</ButtonSignup>
+            </Form> 
+            <Typography state={props.state} onClick={()=>goToLogin(history)}>Já possui cadastro? Clique aqui.</Typography>
+        </ContainerForm>
+    );
 }
 
 export default FormSignup
