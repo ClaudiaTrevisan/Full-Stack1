@@ -31,7 +31,8 @@ export class ImageBusiness {
         throw new ParameterError("Missing properties", 422);
       }
 
-      const tags: string[] = input.tag.split(" " || ",")
+      // const tags: string[] = input.tag.split(" " || ",")
+
 
       const tokenData: AuthenticationData = this.authenticator.getData(token);
 
@@ -46,7 +47,7 @@ export class ImageBusiness {
       const inputTags: Tag = {
         id: idTag,
         author_id: tokenData.id,
-        tags: tags
+        tags: input.tag
       }
 
       const inputImage =  new Image(

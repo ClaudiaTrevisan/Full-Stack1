@@ -1,7 +1,7 @@
 export interface Tag {
     id: string,
     author_id: string,
-    tags: string[]
+    tags: string
 }
 
 export interface InputImage {

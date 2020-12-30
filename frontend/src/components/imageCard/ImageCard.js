@@ -28,8 +28,8 @@ const ImageCard = (props) =>{
     console.log(images)
 
     return (
-        <>
-            <ContainerCard>
+      <>
+        <ContainerCard>
                 {images && images.map((image) =>{
                     return (
                         <CardImage>
