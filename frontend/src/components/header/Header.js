@@ -1,15 +1,18 @@
 import React from 'react'
-import imagetic_w from '../../assets/imagetic1.png'
-import imagetic_b from '../../assets/imagetic2.png'
+import logo from '../../assets/imagetic1.png'
+import toggleOn from '../../assets/toggle-on.svg'
+import toggleOff from '../../assets/toggle-off.svg'
+import { DivHeader, ImgLogo, ImgToggle } from './Styles'
 
 
 const Header = (props) =>{
-    const logo = props.stateImage ? imagetic_w : imagetic_b
+    const toggle = props.state ? toggleOff : toggleOn;
 
     return (
-        <div>
-            <img src={logo} alt="logo"/>
-        </div>
+        <DivHeader state={props.stateFeed} stateTogle={props.state}>
+            <ImgLogo state={props.stateFeed} src={logo} alt="logo"/>
+            <ImgToggle state={props.stateFeed} onClick={props.function} src={toggle} alt="toggle"/>
+        </DivHeader>
     )
 }
 

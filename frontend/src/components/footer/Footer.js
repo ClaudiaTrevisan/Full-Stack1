@@ -1,11 +1,12 @@
 import React from 'react'
+import { DivFooter, Typography } from './Styles'
 
-const Footer = () =>{
+const Footer = (props) =>{
 
     return (
-        <div>
-
-        </div>
+        <DivFooter>
+            <Typography state={props.state}>Created by ClaudiaTrevisan</Typography>
+        </DivFooter>
     )
 }
 

@@ -2,13 +2,13 @@ import React, { useState } from 'react'
 import { useUnprotectedPage } from '../../hooks/useProtection'
 import FormSignup from '../../components/formSignup/FormSignup'
 
-const SignupPage = () =>{
+const SignupPage = (props) =>{
     useUnprotectedPage();
 
     return (
-        <div>
-            <FormSignup/>
-        </div>
+        <>
+            <FormSignup state={props.state}/>
+        </>
     )
 }
 

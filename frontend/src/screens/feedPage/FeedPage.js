@@ -2,13 +2,13 @@ import React from 'react'
 import { useProtectedPage } from '../../hooks/useProtection'
 import ImageCard from '../../components/imageCard/ImageCard'
 
-const FeedPage = () =>{
+const FeedPage = (props) =>{
     useProtectedPage();
 
     return (
-        <div>
-            <ImageCard/>
-        </div>
+        <>
+            <ImageCard state={props.state}/>
+        </>
     );
 }
 

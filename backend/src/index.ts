@@ -6,15 +6,9 @@ import cors from 'cors';
 
 const app = express();
 
-// const corsOptions = {
-//   origin: '*',
-//   optionsSuccessStatus: 200 
-// }
 
-app.use(express.json());
+app.use(express.json({limit: '50mb'}));
 app.use(cors());
-
-// cors(corsOptions)
 
 app.use("/user", userRouter);
 app.use("/image", imageRouter);

@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import useForm from '../../hooks/useForm'
 import { insertImage}  from '../../services/images'
 
 const FormAdd = () =>{
-    const history = useHistory()
-    const token = localStorage.getItem("token")
+    const history = useHistory();
+    const token = localStorage.getItem("token");
+    const [file, setFile] = useState("");
+    const [url, setUrl] = useState("");
     const {form, handleInputChange, resetState} = useForm({
         subtitle: "", 
         tag: "",
@@ -13,8 +15,18 @@ const FormAdd = () =>{
         collection: ""
     });
 
+    const selectFile = (event) =>{
+        setFile(event.target.files[0])
+    };
+
     const onClickInsert = (event) => {
-        event.preventDefault()
+        event.preventDefault();
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () =>{
+            setUrl(reader.result)
+        }
+        form.file = url;
         insertImage(form, token)
         resetState()
     };
@@ -47,10 +59,10 @@ const FormAdd = () =>{
                     placeholder="coleção"
                 />
                 <input
-                    type="text"
-                    value={form.file}
-                    name="file"
-                    onChange={handleInputChange}
+                    type="file"
+                    // value={file}
+                    // name="file"
+                    onChange={selectFile}
                     required
                     placeholder="Arquivo"
                 />      

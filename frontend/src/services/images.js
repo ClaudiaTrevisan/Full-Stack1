@@ -16,8 +16,7 @@ export const getFeed = (token, setState) =>{
 
 };
 
-export const getDetailImageById = (id, token) =>{
-    let image = {}
+export const getDetailImageById = (id, token, setState) =>{
     
     axios.get(`http://localhost:3003/image/?id=${id}`, {
         headers: {
@@ -25,13 +24,12 @@ export const getDetailImageById = (id, token) =>{
         }
     })
     .then((response) =>{
-        image = response.data
+        setState(response.data)
     })
     .catch((error)=>{
         alert("Ocorreu um erro. Tente novamente mais tarde")
     })
 
-    return image
 };
 
 export const insertImage = (input, token) =>{
